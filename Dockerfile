@@ -1,18 +1,19 @@
-FROM node:18-alpine
+#base image 
+FROM node:18-slim
 
-# Set the working directory
+#work dir
+
 WORKDIR /app
 
-# Copy package files and install dependencies
+#copy package file and dependency
 COPY package*.json ./
 RUN npm install
-
-# Copy the entire project and build the application
+RUN npm i sharp
+#copy code
 COPY . .
 RUN npm run build
 
-# Expose the application port
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "start"]
+CMD ["npm","start"]
+
